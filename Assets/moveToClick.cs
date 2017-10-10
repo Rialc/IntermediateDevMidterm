@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class moveToClick : MonoBehaviour {
     RaycastHit hit;
     public Vector3 target;
-	// Use this for initialization
-	void Start () {
+    public Text text;
+    // Use this for initialization
+    void Start () {
         target = new Vector3(transform.position.x, 0, transform.position.z);
 	}
 
@@ -37,5 +39,12 @@ public class moveToClick : MonoBehaviour {
     private void OnCollisionExit(Collision collision)
     {
         this.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="treasure")
+        {
+            text.text = "A winner is you!";
+        }
     }
 }
