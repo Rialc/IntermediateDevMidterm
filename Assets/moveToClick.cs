@@ -7,10 +7,14 @@ public class moveToClick : MonoBehaviour {
     RaycastHit hit;
     public Vector3 target;
     public Text text;
+
+    //public LayerMask layermask;
     // Use this for initialization
     void Start () {
         target = new Vector3(transform.position.x, 0, transform.position.z);
-	}
+        
+        //Debug.Log(layermask);
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,7 +23,7 @@ public class moveToClick : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,100f))
             {
                 Debug.DrawLine(ray.origin, hit.point);
                 Debug.Log(hit.point + " " + hit.transform.gameObject.name);
@@ -44,7 +48,7 @@ public class moveToClick : MonoBehaviour {
     {
         if (other.gameObject.tag=="treasure")
         {
-            text.text = "A winner is you!";
+            text.text = "A winner is you! If you would go back to the starting room that would be nice :)";
         }
     }
 }

@@ -12,20 +12,17 @@ public class coneScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //this.gameObject.transform.Rotate(new Vector3());
+    }
 
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            Debug.Log("FUCK YES");
-        }
-    }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
             Debug.Log("FUCK YES TRIGGERED");
+            this.gameObject.GetComponentInParent<cameraScript>().RayCheck(other.gameObject.transform.position);
         }
     }
+    
+    
 }
